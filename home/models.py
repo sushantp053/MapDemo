@@ -9,7 +9,7 @@ class Natoshi(models.Model):
     crop = models.CharField(max_length=100)
     area = models.FloatField()
     village = models.CharField(max_length=100)
-    remarks = models.CharField(max_length=100)
+    remark = models.CharField(max_length=100)
     owner = models.CharField(max_length=100)
     geom = models.MultiPolygonField()
 
