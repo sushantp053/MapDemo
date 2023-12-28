@@ -1,8 +1,13 @@
 from django.shortcuts import render
 from home.models import Natoshi
+from django.core.serializers import serialize
+
 
 
 def home(request):
-    natoshi = Natoshi.objects.all()
 
-    return render(request, 'home.html', {'natoshi': natoshi})
+    d = serialize("geojson", Natoshi.objects.all())
+    data = {"data": d}
+
+
+    return render(request, 'home.html', {'natoshi': data})
