@@ -49,3 +49,25 @@ var agriLayer = L.geoJSON(n, {
 
 agriLayer.addTo(map);
 
+var cropLayer 
+
+function changeCrop(crop) {
+    if (cropLayer) map.removeLayer(cropLayer);
+    agriLayer.remove();
+    cropLayer = L.geoJSON(n, {
+    filter: function(feature, layer) {
+        if ('all' == crop) return true
+        else return feature.properties.crop == crop;
+    },
+    style: function(feature) {
+          switch (feature.properties.crop) {
+            case 'Sugar Cane': return {color: "red"};
+            case 'Barren': return {color: "yellow"};
+            default: return {color: "blue"};
+          }
+     }
+}
+);
+    cropLayer.addTo(map);
+}
+
